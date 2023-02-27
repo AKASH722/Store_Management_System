@@ -4,31 +4,35 @@ public class Products {
     double price;
     int productQuantity;
     String category;
-    String manufacturer;
     /*
-    * Electronics
-        * Mobile Phones --> M
-        * Laptops --> L
-        * Others --> O
+    * Mobile Phones --> M
+    * Laptops/Desktops --> L
+    * Smart Watches --> W
+    * Audio --> S
+    * Gaming --> G
+    * Home Appliances --> H
+    * Accessor -->
+    * Others --> E
     */
+    String brandName;
     static int serial=1001;
     Products() {
 
     }
-    Products(String productName,double price,int productQuantity,String category,String manufacturer) {
+    Products(String productName,double price,int productQuantity,String category,String brandName) {
         productId="E"+serial++;
         this.productName=productName;
         this.price=price;
         this.productQuantity=productQuantity;
         this.category=category;
-        this.manufacturer=manufacturer;
+        this.brandName =brandName;
     }
     void displayAllProducts() {
-        System.out.println(productName);
         System.out.println(productId);
-        System.out.println(productQuantity);
-        System.out.println(category);
-        System.out.println(manufacturer);
+        System.out.println(productName);
         System.out.println(price);
+        System.out.println(brandName);
+        System.out.println(category);
+        System.out.println(productQuantity);
     }
 }
