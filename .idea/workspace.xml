@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7a5e0f3-c7ad-45a6-a4dc-08a9b178e140" name="Changes" comment="24th March&#10;code done testing remaining">
+    <list default="true" id="c7a5e0f3-c7ad-45a6-a4dc-08a9b178e140" name="Changes" comment="24th March&#10;code done testing done">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ElectronicStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ElectronicStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Employee.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679607700761</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="24th March&#10;code done testing done">
+      <created>1679608551876</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679608551876</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,6 +139,7 @@
     <MESSAGE value="23rd March&#10;Sales report;&#10;Employee remaing" />
     <MESSAGE value="23rd March&#10;Employee remaing" />
     <MESSAGE value="24th March&#10;code done testing remaining" />
-    <option name="LAST_COMMIT_MESSAGE" value="24th March&#10;code done testing remaining" />
+    <MESSAGE value="24th March&#10;code done testing done" />
+    <option name="LAST_COMMIT_MESSAGE" value="24th March&#10;code done testing done" />
   </component>
 </project>

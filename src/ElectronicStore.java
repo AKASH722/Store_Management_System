@@ -77,12 +77,12 @@ public class ElectronicStore {
                 return;
             }
             case "1" -> inventory.menu();
-            case "2" -> menu_2();
+            case "2" -> employee_menu();
             default -> System.out.println("Please press a valid number");
         }
         menu();
     }
-    static void menu_2() {
+    static void employee_menu() {
         System.out.println("*****************************************************************************");
         System.out.println("Press 0 to Main Menu.");
         System.out.println("Press 1 to Add Employee");
@@ -147,7 +147,7 @@ public class ElectronicStore {
                 break;
             default : System.out.println("Please press a valid number");
         }
-        menu_2();
+        employee_menu();
     }
     static int searchEmployee() {
         System.out.print("Enter Employee ID : ");
