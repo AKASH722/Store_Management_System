@@ -52,6 +52,118 @@ public class ElectronicStore {
             captcha();
         }
     }
+    static Inventory inventory=new Inventory();
+    static Employee[] employee =new Employee[25];
+    static {
+        employee[0]=new Employee("James","25","50000","Executive");
+        employee[1]=new Employee("Harry","28","40000","logistics Manager");
+        employee[2]=new Employee("Tony","26","25000","Security Guard");
+        employee[3]=new Employee("Steve","30","35000","Security Head");
+        for(int i=4;i<employee.length;i++) {
+            employee[i]=new Employee();
+        }
+    }
+    static String choice;
+    static void menu() {
+        System.out.println("*****************************************************************************");
+        System.out.println("Press 0 to Exit Application.");
+        System.out.println("Press 1 to Product Menu");
+        System.out.println("Press 2 to Employee Menu");
+        System.out.println("*****************************************************************************");
+        choice=scan.nextLine();
+        switch (choice) {
+            case "0" -> {
+                System.out.println("***************** Thanks for using our system *****************");
+                return;
+            }
+            case "1" -> inventory.menu();
+            case "2" -> menu_2();
+            default -> System.out.println("Please press a valid number");
+        }
+        menu();
+    }
+    static void menu_2() {
+        System.out.println("*****************************************************************************");
+        System.out.println("Press 0 to Main Menu.");
+        System.out.println("Press 1 to Add Employee");
+        System.out.println("Press 2 to Update salary");
+        System.out.println("Press 3 to Display All Employee");
+        System.out.println("Press 4 to Search Employee");
+        System.out.println("Press 5 to Remove Employee");
+        System.out.println("*****************************************************************************");
+        choice=scan.nextLine();
+        switch (choice) {
+            case "0" : return;
+            case "1" :
+                {
+                    for(int i=0;i<employee.length;i++) {
+                        if(employee[i].employee_id==null) {
+                            employee[i].add(i);
+                            break;
+                        }
+                    }
+                }
+                break;
+            case "2" :
+                {
+                    int id = searchEmployee();
+                    if (id == 4001) {
+                        System.out.println("No such product found in the inventory");
+                    } else {
+                        employee[id].updateSalary();
+                    }
+                }
+                break;
+            case "3" :
+                {
+                    Employee.header();
+                    for (Employee emp : employee) {
+                        if (emp.employee_id == null) {
+                            continue;
+                        }
+                        emp.display();
+                    }
+                }
+                break;
+            case "4" :
+                    {
+                        int id = searchEmployee();
+                        if (id == 4001) {
+                            System.out.println("No such product found in the inventory");
+                        } else {
+                            employee[id].displayOne();
+                        }
+                    }
+                break;
+            case "5" :
+                {
+                    int id = searchEmployee();
+                    if (id == 4001) {
+                        System.out.println("No such product found in the inventory");
+                    } else {
+                        employee[id].delete();
+                    }
+                }
+                break;
+            default : System.out.println("Please press a valid number");
+        }
+        menu();
+    }
+    static int searchEmployee() {
+        System.out.print("Enter Employee ID : ");
+        String enteredID=scan.nextLine();
+        int i=0;
+        for(;i<employee.length;i++) {
+            if(employee[i].employee_id==null) {
+                if(i==employee.length-1) {
+                    return 4001;//error code
+                }
+            } else if(employee[i].employee_id.equals(enteredID)) {
+                break;
+            }
+        }
+        return i;
+    }
     public  static  void main(String [] args) {
         System.out.println("*************************** Welcome to the Store ****************************");
         System.out.println("**************************** Login to continue ******************************");
@@ -60,11 +172,6 @@ public class ElectronicStore {
         if(!access) {
             return;
         }
-        Inventory inventory=new Inventory();
-        inventory.menu();
-        if(inventory.choice.equals("0")) {
-            System.out.println("***************** Thanks for using our system *****************");
-            return;
-        }
+        menu();
     }
 }

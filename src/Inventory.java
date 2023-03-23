@@ -23,7 +23,7 @@ public class Inventory {
     String choice;
     void menu() {
         System.out.println("*****************************************************************************");
-        System.out.println("Press 0 to Exit Application.");
+        System.out.println("Press 0 to Main Menu.");
         System.out.println("Press 1 to Add Product");
         System.out.println("Press 2 to Upgrade Quantity Of Product");
         System.out.println("Press 3 to Display All Products");
@@ -91,7 +91,7 @@ public class Inventory {
             }
         }
     }
-    boolean validityOfNumber(String input,String quantityName) {
+    static boolean validityOfNumber(String input,String quantityName) {
         boolean validity=true;
         int i;
         for (i = 0; i < input.length(); i++) {
