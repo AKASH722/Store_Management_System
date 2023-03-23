@@ -8,8 +8,8 @@ public class ElectronicStore {
     static String password="Manager";
     static void managerLogin() {
         // login method
-        if (loginAttempt_count == 3) {
-            System.out.println("\nAccount locked for 1 hour");
+        if (loginAttempt_count == 2) {
+            System.out.println("Account locked for 1 hour");
             access = false;
         } else {
             System.out.print("Enter User ID  : ");
@@ -19,10 +19,10 @@ public class ElectronicStore {
             captcha();
             if(enteredUserId.equals(userId)&&enteredPassword.equals(password)) {
                 access=true;
-                System.out.println("\nYou have successfully signed in");
+                System.out.println("You have successfully signed in");
             } else {
-                System.out.println("\nIncorrect User Id or Password");
-                System.out.println("**************************************************************");
+                System.out.println("Incorrect User Id or Password");
+                System.out.println("*****************************************************************************");
                 loginAttempt_count++;
                 managerLogin();
             }
@@ -45,7 +45,7 @@ public class ElectronicStore {
             operator_sign = '*';
             answer = a * b;
         }
-        System.out.print("\nCAPTCHA --> "+a+operator_sign+b+" = ");
+        System.out.print("CAPTCHA --> "+a+operator_sign+b+" = ");
         String enteredAnswer=scan.nextLine();
         if(!(enteredAnswer.equals(String.valueOf(answer)))) {
             System.out.println("Entered Captcha answer is incorrect");
@@ -53,16 +53,17 @@ public class ElectronicStore {
         }
     }
     public  static  void main(String [] args) {
-        System.out.println("******************** Welcome to the Store ********************");
-        System.out.println("********************* Login to continue **********************");
+        System.out.println("*************************** Welcome to the Store ****************************");
+        System.out.println("**************************** Login to continue ******************************");
         managerLogin();
-        System.out.println("**************************************************************");
+        System.out.println("*****************************************************************************");
         if(!access) {
             return;
         }
         Inventory inventory=new Inventory();
         inventory.menu();
         if(inventory.choice.equals("0")) {
+            System.out.println("***************** Thanks for using our system *****************");
             return;
         }
     }

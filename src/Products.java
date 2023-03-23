@@ -4,6 +4,7 @@ public class Products {
     String price;
     String productQuantity;
     String category;
+    String brandName;
     /*
     * Mobile Phones --> M
     * Laptops/Desktops --> L
@@ -12,7 +13,6 @@ public class Products {
     * Home Appliances --> H
     * Others --> E
     */
-    String brandName;
     static int serial=1001;
     Products() {
 
@@ -44,12 +44,12 @@ public class Products {
         }
     }
     void displayProduct() {
-        System.out.println(productId);
-        System.out.println(productName);
-        System.out.println(price);
-        System.out.println(brandName);
-        System.out.println(category);
-        System.out.println(productQuantity);
+        System.out.println("Product ID   : "+productId);
+        System.out.println("Product Name : "+productName);
+        System.out.println("Price        : "+price);
+        System.out.println("Brand Name   : "+brandName);
+        System.out.println("Category     : "+category);
+        System.out.println("Quantity     : "+productQuantity);
     }
     void displayAllProducts() {
         System.out.print(productId+"   ");
@@ -64,10 +64,10 @@ public class Products {
         System.out.print(productQuantity+"\n");
     }
     static void header() {
-        System.out.println("  ID    Product Name   Price     Brand Name       Category       Quantity");
+        System.out.println("  ID    Product Name        Price     Brand Name       Category       Quantity");
     }
     void spaceProductName() {
-        int space=15-productName.length();
+        int space=20-productName.length();
         if(space<0){
             System.out.print("     ");
         } else {
@@ -113,5 +113,15 @@ public class Products {
                 i++;
             }
         }
+    }
+    static void billHeader() {
+        System.out.println("  ID    Product Name        Price     Quantity");
+    }
+    void billDisplay() {
+        System.out.print(productId+"   ");
+        System.out.print(productName);
+        spaceProductName();
+        System.out.print(price);
+        spacePrice();
     }
 }
