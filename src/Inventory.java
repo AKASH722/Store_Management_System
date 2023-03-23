@@ -96,8 +96,7 @@ public class Inventory {
         for (i = 0; i < input.length(); i++) {
             if ((input.charAt(i) >= '0' && input.charAt(i) <= '9')) {
                 validity=false;
-            }
-            else {
+            } else {
                 validity=true;
                 System.out.println("Enter a valid "+quantityName);
                 break;
@@ -185,8 +184,7 @@ public class Inventory {
         }
         if(count==0) {
             System.out.println("No Products of "+category+" category found in inventory");
-        }
-        else {
+        } else {
             Products.header();
             for (Products products : product) {
                 if (products.productId == null) {
@@ -210,8 +208,7 @@ public class Inventory {
                 productID[i] = searchIDSell();
                 if(productID[i]==4001){
                     System.out.println("No such product found in the inventory");
-                }
-                else {
+                } else {
                     break;
                 }
             }
@@ -228,8 +225,7 @@ public class Inventory {
                 quantity_remove = Integer.parseInt(product[productID[i]].productQuantity) - quantity[i];
                 if(quantity_remove>=0) {
                     break;
-                }
-                else {
+                } else {
                     System.out.println("Not enough Stock in the inventory");
                 }
             }
@@ -257,6 +253,7 @@ public class Inventory {
         finalAmount+=totalBill+(0.18*totalBill);
         System.out.println("               Total Amount : "+totalBill);
         System.out.println("Total Amount(After 18% GST) : "+finalAmount);
+        totalSales(finalAmount);
         System.out.println("*****************************************************************************");
     }
     int searchIDSell() {
@@ -265,8 +262,7 @@ public class Inventory {
         int i = 0;
         if(enteredProductID.equals("0")) {
             return 1234;
-        }
-        else {
+        } else {
             for (; i < product.length; i++) {
                 if (product[i].productId == null) {
                     if (i == product.length - 1) {
@@ -313,8 +309,7 @@ public class Inventory {
                 if(i==product.length-1) {
                     return 4001;//error code
                 }
-            }
-            else if(product[i].productId.equals(enteredProductID)) {
+            } else if(product[i].productId.equals(enteredProductID)) {
                 break;
             }
         }
@@ -356,8 +351,7 @@ public class Inventory {
         productID = searchID();
         if (productID == 401) {
             System.out.println("No such product found in the inventory");
-        }
-        else {
+        } else {
             product[productID].productId=null;
             product[productID].productName=null;
             product[productID].productQuantity=null;
@@ -367,7 +361,52 @@ public class Inventory {
             System.out.println("Product has been successfully deleted");
         }
     }
+    double[] amount=new double[1000];
+    int noOfBills=0;
+    void totalSales(double amount) {
+       this.amount[noOfBills++]=amount;
+    }
     void salesReport() {
-
+        System.out.println("****************************** OUT OF STOCK *********************************");
+        int counter=0;
+        for (Products products : product) {
+            if (products.productId == null) {
+                continue;
+            }
+            if (products.productQuantity.equals("0")) {
+                counter++;
+            }
+        }
+        if (counter==0) {
+            System.out.println("               None of the Products is out of stock");
+        }
+        else {
+            Products.header();
+            for (Products products : product) {
+                if (products.productId == null) {
+                    continue;
+                }
+                if (products.productQuantity.equals("0")) {
+                    products.displayAllProducts();
+                }
+            }
+        }
+        System.out.println("*****************************************************************************");
+        System.out.println("******************************** NET SALES **********************************");
+        double totalSales=0;
+        if(noOfBills==0) {
+            System.out.println("                                No sales Today");
+        }
+        else {
+            for(int i=0;i<1000;i++) {
+                if(amount[i]==0) {
+                    break;
+                }
+                System.out.println("Customer "+(i+1)+"  "+amount[i]);
+                totalSales+=amount[i];
+            }
+            System.out.println("Net Sales Today : "+totalSales);
+        }
+        System.out.println("*****************************************************************************");
     }
 }
