@@ -57,7 +57,7 @@ public class ElectronicStore {
     static {
         employee[0]=new Employee("James","25","50000","Executive");
         employee[1]=new Employee("Harry","28","40000","logistics Manager");
-        employee[2]=new Employee("Tony","26","25000","Security Guard");
+        employee[2]=new Employee("Chris","26","20000","Security Guard");
         employee[3]=new Employee("Steve","30","35000","Security Head");
         for(int i=4;i<employee.length;i++) {
             employee[i]=new Employee();
@@ -73,7 +73,7 @@ public class ElectronicStore {
         choice=scan.nextLine();
         switch (choice) {
             case "0" -> {
-                System.out.println("***************** Thanks for using our system *****************");
+                System.out.println("************************ Thanks for using our system ************************");
                 return;
             }
             case "1" -> inventory.menu();
@@ -108,7 +108,7 @@ public class ElectronicStore {
                 {
                     int id = searchEmployee();
                     if (id == 4001) {
-                        System.out.println("No such product found in the inventory");
+                        System.out.println("No such employee found");
                     } else {
                         employee[id].updateSalary();
                     }
@@ -129,7 +129,7 @@ public class ElectronicStore {
                     {
                         int id = searchEmployee();
                         if (id == 4001) {
-                            System.out.println("No such product found in the inventory");
+                            System.out.println("No such employee found");
                         } else {
                             employee[id].displayOne();
                         }
@@ -139,7 +139,7 @@ public class ElectronicStore {
                 {
                     int id = searchEmployee();
                     if (id == 4001) {
-                        System.out.println("No such product found in the inventory");
+                        System.out.println("No such employee found");
                     } else {
                         employee[id].delete();
                     }
@@ -147,7 +147,7 @@ public class ElectronicStore {
                 break;
             default : System.out.println("Please press a valid number");
         }
-        menu();
+        menu_2();
     }
     static int searchEmployee() {
         System.out.print("Enter Employee ID : ");

@@ -34,13 +34,13 @@ public class Employee {
         designation=scan.nextLine();
     }
     static void header() {
-        System.out.println("  ID     Name           Age   Salary   Designation");
+        System.out.println("  ID   Name        Age  Salary   Designation");
     }
     void displayOne() {
-        System.out.println("ID : "+employee_id);
-        System.out.println("Name  : "+name);
-        System.out.println("Age : "+age);
-        System.out.println("Salary : "+salary);
+        System.out.println("ID          : "+employee_id);
+        System.out.println("Name        : "+name);
+        System.out.println("Age         : "+age);
+        System.out.println("Salary      : "+salary);
         System.out.println("Designation : "+designation);
     }
     void display() {
@@ -54,7 +54,7 @@ public class Employee {
         System.out.print(designation+"\n");
     }
     void spaceName() {
-        int space=16-name.length();
+        int space=12-name.length();
         if(space<0){
             System.out.print("     ");
         } else {
@@ -90,7 +90,7 @@ public class Employee {
             System.out.print("Enter New Salary : ");
             salary= scan.nextLine();
         } while(Inventory.validityOfNumber(salary,"salary"));
-        System.out.print("Salary Updated Successfully");
+        System.out.println("Salary Updated Successfully");
     }
     void delete() {
         employee_id=null;
@@ -98,5 +98,6 @@ public class Employee {
         age =null;
         salary=null;
         designation=null;
+        System.out.println("Employee deleted Successfully");
     }
 }
