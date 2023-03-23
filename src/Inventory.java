@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 public class Inventory {
     static Scanner scan=new Scanner(System.in);
@@ -232,6 +233,7 @@ public class Inventory {
             product[productID[i]].productQuantity = String.valueOf(quantity_remove);
         }
         generateBill(productID,quantity);
+        dataStore(productID,quantity);
     }
     void generateBill(int[] productID,int[] quantity) {
         int[] price=new int[1000];
@@ -240,7 +242,7 @@ public class Inventory {
         System.out.println("********************************* BILL ************************************");
         Products.billHeader();
         for(int i=0;i<productID.length;i++) {
-            if(productID[i]==4001|| productID[i]==1234) {
+            if(productID[i]==4001|| productID[i]==1234 ) {
                 break;
             }
             product[productID[i]].billDisplay();
@@ -253,7 +255,6 @@ public class Inventory {
         finalAmount+=totalBill+(0.18*totalBill);
         System.out.println("               Total Amount : "+totalBill);
         System.out.println("Total Amount(After 18% GST) : "+finalAmount);
-        totalSales(finalAmount);
         System.out.println("*****************************************************************************");
     }
     int searchIDSell() {
@@ -361,12 +362,54 @@ public class Inventory {
             System.out.println("Product has been successfully deleted");
         }
     }
-    double[] amount=new double[1000];
+    int[] soldProductID=new int[1000];
+    {
+        Arrays.fill(soldProductID, 1234);
+    }
     int noOfBills=0;
-    void totalSales(double amount) {
-       this.amount[noOfBills++]=amount;
+    int[] soldProductQuantity=new int[1000];
+    void dataStore(int[] productID,int[] productQuantity){
+        noOfBills++;
+        int i;
+        for(i=0;i<1000;i++) {
+            if(soldProductID[i]==1234 ) {
+                break;
+            }
+        }
+        for(int k=0;k<1000;k++) {
+            if(productID[k]==4001|| productID[k]==1234) {
+                continue;
+            }
+            for(int j=0;j<1000;j++) {
+                if(soldProductID[j]==productID[k]) {
+                    soldProductQuantity[j]+=productQuantity[k];
+                    break;
+                } else if(j==999) {
+                    soldProductID[i]=productID[k];
+                    soldProductQuantity[i]=productQuantity[k];
+                    i++;
+                }
+            }
+        }
     }
     void salesReport() {
+        System.out.println("*****************************************************************************");
+        System.out.println("Press 1 to OUT OF STOCK REPORT");
+        System.out.println("Press 2 to NET SALES");
+        System.out.println("Press 3 to List Of Products In order Of sales");
+        System.out.println("*****************************************************************************");
+        String salesReportChoice=scan.nextLine();
+        switch (salesReportChoice) {
+            case "1" -> outOfStock();
+            case "2" -> netSales();
+            case "3" -> sortedListSales();
+            default -> {
+                System.out.println("Please press a valid number");
+                searchProduct();
+            }
+        }
+    }
+    void outOfStock() {
         System.out.println("****************************** OUT OF STOCK *********************************");
         int counter=0;
         for (Products products : product) {
@@ -392,20 +435,66 @@ public class Inventory {
             }
         }
         System.out.println("*****************************************************************************");
+    }
+    void netSales() {
         System.out.println("******************************** NET SALES **********************************");
-        double totalSales=0;
         if(noOfBills==0) {
             System.out.println("                                No sales Today");
-        }
-        else {
+        } else {
+            int[] price =new int[1000];
+            int netSales=0;
+            double netSalesGST=0;
             for(int i=0;i<1000;i++) {
-                if(amount[i]==0) {
-                    break;
+                for(int j=0;j<1000;j++) {
+                    if(soldProductID[i]<soldProductID[j]) {
+                        int temp_1=soldProductQuantity[i];
+                        soldProductQuantity[i]=soldProductQuantity[j];
+                        soldProductQuantity[j]=temp_1;
+                        int temp_2=soldProductID[i];
+                        soldProductID[i]=soldProductID[j];
+                        soldProductID[j]=temp_2;
+                    }
                 }
-                System.out.println("Customer "+(i+1)+"  "+amount[i]);
-                totalSales+=amount[i];
             }
-            System.out.println("Net Sales Today : "+totalSales);
+            Products.billHeader();
+            for(int i=0;i<soldProductID.length;i++) {
+                if(soldProductID[i]==1234 || product[soldProductID[i]].productId==null) {
+                    continue;
+                }
+                product[soldProductID[i]].billDisplay();
+                System.out.print(soldProductQuantity[i]+"\n");
+                price[i]=Integer.parseInt(product[soldProductID[i]].price);
+            }
+            for(int i=0;i<price.length;i++) {
+                netSales+=price[i]*soldProductQuantity[i];
+            }
+            netSalesGST+=netSales+(0.18*netSales);
+            System.out.println("               Net Sales : "+netSales);
+            System.out.println("Net Sales(After 18% GST) : "+netSalesGST);
+        }
+        System.out.println("*****************************************************************************");
+    }
+    void sortedListSales() {
+        System.out.println("******************** List Of Products In order Of sales *********************");
+        for(int i=0;i<1000;i++) {
+            for(int j=0;j<1000;j++) {
+                if(soldProductQuantity[i]>soldProductQuantity[j]) {
+                    int temp_1=soldProductQuantity[i];
+                    soldProductQuantity[i]=soldProductQuantity[j];
+                    soldProductQuantity[j]=temp_1;
+                    int temp_2=soldProductID[i];
+                    soldProductID[i]=soldProductID[j];
+                    soldProductID[j]=temp_2;
+                }
+            }
+        }
+        Products.billHeader();
+        for(int i=0;i<soldProductID.length;i++) {
+            if(soldProductID[i]==1234 || product[soldProductID[i]].productId==null) {
+                continue;
+            }
+            product[soldProductID[i]].billDisplay();
+            System.out.print(soldProductQuantity[i]+"\n");
         }
         System.out.println("*****************************************************************************");
     }
