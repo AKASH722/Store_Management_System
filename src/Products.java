@@ -79,16 +79,7 @@ public class Products {
         }
     }
     void spacePrice() {
-        int space=10-price.length();
-        if(space<0){
-            System.out.print("     ");
-        } else {
-            int i = 0;
-            while (i < space) {
-                System.out.print(" ");
-                i++;
-            }
-        }
+        Employee.space(price);
     }
     void spaceBrandName() {
         int space=17-brandName.length();

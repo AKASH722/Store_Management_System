@@ -12,14 +12,14 @@ public class Employee {
 
     }
     Employee(String name,String age,String salary,String designation) {
-        employee_id=""+serial++;
+        employee_id= String.valueOf(serial++);
         this.name=name;
         this.age=age;
         this.salary=salary;
         this.designation= designation;
     }
     void add(int id) {
-        employee_id=""+(1001+id);
+        employee_id= String.valueOf(1001 + id);
         System.out.print("Enter Name : ");
         name=scan.nextLine();
         do {
@@ -74,7 +74,11 @@ public class Employee {
         }
     }
     void spaceSalary() {
-        int space=10-salary.length();
+        space(salary);
+    }
+
+    static void space(String salary) {
+        int space=10- salary.length();
         if(space<0){
             System.out.print("     ");
         } else {
@@ -85,6 +89,7 @@ public class Employee {
             }
         }
     }
+
     void updateSalary() {
         do {
             System.out.print("Enter New Salary : ");

@@ -35,35 +35,29 @@ public class Inventory {
         System.out.println("*****************************************************************************");
         choice=scan.nextLine();
         switch (choice) {
-            case "0" : return;
-            case "1" : {
-                    String no_Products;
-                    do {
-                        System.out.print("Enter no of Products to be added : ");
-                        no_Products = scan.nextLine();
-                    } while(validityOfNumber(no_Products,"No Of Products"));
-                    int temp= Integer.parseInt(no_Products);
-                    for(int i=1;i<=temp;i++) {
-                        System.out.println("\nEnter Product "+i);
-                        addProduct();
-                    }
+            case "0" -> {
+                return;
+            }
+            case "1" -> {
+                String no_Products;
+                do {
+                    System.out.print("Enter no of Products to be added : ");
+                    no_Products = scan.nextLine();
+                } while (validityOfNumber(no_Products, "No Of Products"));
+                int temp = Integer.parseInt(no_Products);
+                for (int i = 1; i <= temp; i++) {
+                    System.out.println("\nEnter Product " + i);
+                    addProduct();
                 }
-                break;
-            case "2" : upgradeQuantity();
-                break;
-            case "3" : displayAllProducts();
-                break;
-            case "4" : displayCategoryProducts();
-                break;
-            case "5" : sellProduct();
-                break;
-            case "6" : searchProduct();
-                break;
-            case "7" : deleteProduct();
-                break;
-            case "8" : salesReport();
-                break;
-            default : System.out.println("Please press a valid number");
+            }
+            case "2" -> upgradeQuantity();
+            case "3" -> displayAllProducts();
+            case "4" -> displayCategoryProducts();
+            case "5" -> sellProduct();
+            case "6" -> searchProduct();
+            case "7" -> deleteProduct();
+            case "8" -> salesReport();
+            default -> System.out.println("Please press a valid number");
         }
         menu();
     }

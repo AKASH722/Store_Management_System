@@ -93,59 +93,51 @@ public class ElectronicStore {
         System.out.println("*****************************************************************************");
         choice=scan.nextLine();
         switch (choice) {
-            case "0" : return;
-            case "1" :
-                {
-                    for(int i=0;i<employee.length;i++) {
-                        if(employee[i].employee_id==null) {
-                            employee[i].add(i);
-                            break;
-                        }
+            case "0" -> {
+                return;
+            }
+            case "1" -> {
+                for (int i = 0; i < employee.length; i++) {
+                    if (employee[i].employee_id == null) {
+                        employee[i].add(i);
+                        break;
                     }
                 }
-                break;
-            case "2" :
-                {
-                    int id = searchEmployee();
-                    if (id == 4001) {
-                        System.out.println("No such employee found");
-                    } else {
-                        employee[id].updateSalary();
-                    }
+            }
+            case "2" -> {
+                int id = searchEmployee();
+                if (id == 4001) {
+                    System.out.println("No such employee found");
+                } else {
+                    employee[id].updateSalary();
                 }
-                break;
-            case "3" :
-                {
-                    Employee.header();
-                    for (Employee emp : employee) {
-                        if (emp.employee_id == null) {
-                            continue;
-                        }
-                        emp.display();
+            }
+            case "3" -> {
+                Employee.header();
+                for (Employee emp : employee) {
+                    if (emp.employee_id == null) {
+                        continue;
                     }
+                    emp.display();
                 }
-                break;
-            case "4" :
-                    {
-                        int id = searchEmployee();
-                        if (id == 4001) {
-                            System.out.println("No such employee found");
-                        } else {
-                            employee[id].displayOne();
-                        }
-                    }
-                break;
-            case "5" :
-                {
-                    int id = searchEmployee();
-                    if (id == 4001) {
-                        System.out.println("No such employee found");
-                    } else {
-                        employee[id].delete();
-                    }
+            }
+            case "4" -> {
+                int id = searchEmployee();
+                if (id == 4001) {
+                    System.out.println("No such employee found");
+                } else {
+                    employee[id].displayOne();
                 }
-                break;
-            default : System.out.println("Please press a valid number");
+            }
+            case "5" -> {
+                int id = searchEmployee();
+                if (id == 4001) {
+                    System.out.println("No such employee found");
+                } else {
+                    employee[id].delete();
+                }
+            }
+            default -> System.out.println("Please press a valid number");
         }
         employee_menu();
     }
