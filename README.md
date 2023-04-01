@@ -3,15 +3,15 @@
 # Features
 --> Manager Login 
 
---> Give automatic id to product based on there Cateody
+--> Give automatic id to product based on their Category
 
   Eg Mobile Phones --> M1001
-  # Features Realted to employee Menagement
+  # Features Related to employee Management
     --> Add/Remove Employee
     --> Search Employee
     --> Display All Employee's
     --> Change Salary
-  # Features Realted to product Menagement
+  # Features Related to product Management
     --> Add/Remove Product
     --> Search Product
     --> Display All Products
